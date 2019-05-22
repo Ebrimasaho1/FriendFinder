@@ -23,18 +23,18 @@ require("./routes/htmlRoutes")(app);
 //for loop to check for friend compatibility
 for (i=0; i < friendsArray.length; i++){ // user input is defined in survey.html script section
     for (j=0; j < userInput.length; j++) {
-        if (Math.abs(friendsArray[i].scores-userInput[j]) === 0){
-            console.log("Perfect Match");
+        if (Math.abs(friendsArray[i].scores-userInput[j]) === 0 || Math.abs(friendsArray[i].scores-userInput[j]) === 1 ){
+            console.log("You have a match");
             
         }
-        else if (Math.abs(friendsArray[i].scores-userInput[j]) === 1 ) {
-            console.log("Closest Match");
+        // else if (Math.abs(friendsArray[i].scores-userInput[j]) === 1) {
+        //     console.log("Closest Match");
             
-        }
-        else if(Math.abs(friendsArray[i].scores-userInput[j]) === 2 ) {
-            console.log("Closer Match");
+        // }
+        // else if(Math.abs(friendsArray[i].scores-userInput[j]) === 2 ) {
+        //     console.log("Closer Match");
             
-        }
+        // }
         else {
             console.log("Not match found");
             
