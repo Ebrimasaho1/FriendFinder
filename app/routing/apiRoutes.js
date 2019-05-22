@@ -16,10 +16,10 @@ module.exports = function(app) {
 
 
       //post request
-      app.post("/api/tables", function(req, res) {
+      app.post("/api/friends", function(req, res) {
        
-        if (friends.length < 5) {
-          tableData.push(req.body);
+        if (friendsData.length < 5) {
+          friendsData.push(req.body);
           res.json(true);
         }
         

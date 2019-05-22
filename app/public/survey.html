@@ -32,7 +32,7 @@
         <!--User selection-->
         <h4>Question 1</h4>
         <h5>You prefer Burgers over Pizza</h5>
-        <select class="custom-select custom-select-lg col-sm-3" id="queOne">
+        <select class="custom-select custom-select-lg col-sm-3 " id="queOne">
             <option selected>Select an Option</option>
             <option value="1">1 (Stronly Disagree)</option>
             <option value="2">2</option>
@@ -156,7 +156,7 @@
 
 
 
-    
+
 </body>
 <script type="text/javascript">
 
@@ -169,8 +169,19 @@
         };
         console.log(newFriend);
 
+        var userInput = newFriend.scores;
+        console.log(userInput);
+
+        // $.post("/api/friends", newFriend, function(data){
+        //     console.log(data);
+            
+        // })
+        
+       module.exports = userInput
+
 
     })
+
 
 </script>
 
