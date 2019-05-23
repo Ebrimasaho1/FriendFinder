@@ -27,7 +27,7 @@
         <br>
         <h2>Survey Questions</h2>
         <br>
-        <h3>About You</h3> -->
+        <h3>About You</h3> 
         <form>
             <div class="form-group">
                 <label for="formGroupExampleInput">Name (Required)</label>
@@ -171,7 +171,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Here is your Match!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -207,9 +207,13 @@
             $("#matchImg").attr("src", data.photo);
             $("#matchImg").width("300px");
             $("#matchImg").height("300px");
+            $('#friendModal').modal("toggle");
 
-            $('#friendModal').modal("toggle")
-
+            // Clear the form when submitting 
+            $("#name").val("");
+            $("#imgUrl").val("");
+            $("#queOne").val("");  $("#queTwo").val(""); $("#queThree").val("");  $("#queFour").val("");  $("#queFive").val("");  $("#queSix").val("");
+            $("#queSeven").val("");  $("#queEight").val("");  $("#queNine").val("");  $("#queTen").val("");
         })
 
 
