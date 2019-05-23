@@ -44,8 +44,10 @@ var newBestFriend = {
         newBestFriend.photo = currentFriend.photo;
       }
     }
+    console.log(newBestFriend);
+    
       friendsArray.push(req.body);
-      res.json(true);
+      res.json(newBestFriend);
 
 
     });
