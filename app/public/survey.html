@@ -182,12 +182,12 @@
         var userInput = newFriend.scores;
         console.log(userInput);
 
-        // $.post("/api/friends", newFriend, function(data){
-        //     console.log(data);
+        $.post("/api/friends",newFriend).then(function(data){
+            console.log(data);
 
-        // })
+        })
 
-        module.exports = userInput
+        
 
 
     })
