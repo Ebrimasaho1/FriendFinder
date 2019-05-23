@@ -25,7 +25,6 @@ apiRoutes(app);
 htmlRoutes(app);
 
 
-
 // LISTENER
 // The below code effectively "starts" our server
 // =============================================================================
