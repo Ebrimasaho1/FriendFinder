@@ -1,8 +1,8 @@
 
-
 // Load data
 //var friendsData = require("../data/friends");
-var friendsArray = require("../data/friends")
+var friendsArray = require("../data/friends");
+var rds = require("../Database/rds");
 
 
 //  routing
@@ -15,6 +15,22 @@ module.exports = function (app) {
 
   //post request
   app.post("/api/friends", function (req, res) {
+
+    var connection = mysql.createConnection({
+      host     : process.env.RDS_HOSTNAME,
+      user     : process.env.RDS_USERNAME,
+      password : process.env.RDS_PASSWORD,
+      port     : process.env.RDS_PORT
+    });
+    
+    connection.connect(function(err) {
+      if (err) {
+        console.error('Database connection failed: ' + err.stack);
+        return;
+      }
+    
+      console.log('Connected to database.');
+    });
 
 var newBestFriend = {
   name:"",
@@ -45,7 +61,11 @@ var newBestFriend = {
       }
     }
     console.log(newBestFriend);
-    
+      // TODO: Instead of pushing to the array,
+      // Instead, write a row to the database.
+      //
+      // Pseudocode:
+      // mysql_connection.write_row(..., )
       friendsArray.push(req.body);
       res.json(newBestFriend);
 

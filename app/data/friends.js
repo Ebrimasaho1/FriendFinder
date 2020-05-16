@@ -1,3 +1,4 @@
+var rds = require("../Database/rds");
 
 var friendsArray = [{
     "name":"Ahmed",
