@@ -3,6 +3,7 @@
 //var friendsData = require("../data/friends");
 var friendsArray = require("../data/friends");
 var rds = require("../Database/rds");
+var mysql = require('mysql');
 
 
 //  routing
@@ -25,7 +26,9 @@ module.exports = function (app) {
     
     connection.connect(function(err) {
       if (err) {
-        console.error('Database connection failed: ' + err.stack);
+        var error = 'Database connection failed: ' + err.stack
+        console.error(error)
+        res.json("error": error);
         return;
       }
     
