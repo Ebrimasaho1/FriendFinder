@@ -28,7 +28,6 @@ module.exports = function (app) {
       if (err) {
         var error = 'Database connection failed: ' + err.stack
         console.error(error)
-        res.json("error": error);
         return;
       }
     
