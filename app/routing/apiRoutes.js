@@ -2,7 +2,7 @@
 // Load data
 //var friendsData = require("../data/friends");
 var friendsArray = require("../data/friends");
-var rds = require("../Database/rds");
+//var rds = require("../Database/rds");
 var mysql = require('mysql');
 
 
@@ -21,7 +21,9 @@ module.exports = function (app) {
       host     : process.env.RDS_HOSTNAME,
       user     : process.env.RDS_USERNAME,
       password : process.env.RDS_PASSWORD,
-      port     : process.env.RDS_PORT
+      port     : process.env.RDS_PORT,
+      database: "FriendList"
+
     });
     
     connection.connect(function(err) {
@@ -32,6 +34,11 @@ module.exports = function (app) {
       }
     
       console.log('Connected to database.');
+      var sql = "INSERT INTO AboutFriend (name, image) VALUES ('Ebrima Saho', 'Highway 37')";
+      connection.query(sql, function (err, result){
+        if (err) throw err;
+        console.log("Name and image inserted");
+      });
     });
 
 var newBestFriend = {
