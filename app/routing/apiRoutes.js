@@ -1,17 +1,11 @@
 
-// Load data
-//var friendsData = require("../data/friends");
-var friendsArray = require("../data/friends");
+
+
 //var rds = require("../Database/rds");
 var mysql = require('mysql');
 
-
 //  routing
 module.exports = function (app) {
-
-  app.get("/api/friends", function (req, res) {
-    res.json(friendsData);
-  });
 
 
   //post request
@@ -34,11 +28,11 @@ module.exports = function (app) {
       }
     
       console.log('Connected to database.');
-      var sql = "INSERT INTO AboutFriend (name, image) VALUES ('Ebrima Saho', 'Highway 37')";
-      connection.query(sql, function (err, result){
-        if (err) throw err;
-        console.log("Name and image inserted");
-      });
+      // var sql = "DELETE FROM AboutFriend WHERE id > 1";
+      // connection.query(sql, function (err, result){
+      //   if (err) throw err;
+      //   console.log("Name and image deleted");
+      // });
     });
 
 var newBestFriend = {
@@ -49,35 +43,74 @@ var newBestFriend = {
     var newFriendData = req.body;
     console.log(newFriendData);
     //for loop to check for friend compatibility
-    for (i = 0; i < friendsArray.length; i++) { // user input is defined in survey.html script section
-      // current friend
-      var currentFriend = friendsArray[i];
-      var scoreDiff = 0;
-      for (j = 0; j < currentFriend.scores.length; j++) {
-
-        scoreDiff += Math.abs(currentFriend.scores[j]-newFriendData.scores[j]);
-        
-      //  console.log(currentFriend.scores[j]);
-      //  console.log(newFriendData.scores[j]);
-        
-      }
-      console.log(scoreDiff);
-
-      if (scoreDiff < newBestFriend.friendScore){
-        newBestFriend.friendScore = scoreDiff;
-        newBestFriend.name = currentFriend.name;
-        newBestFriend.photo = currentFriend.photo;
-      }
-    }
-    console.log(newBestFriend);
-      // TODO: Instead of pushing to the array,
-      // Instead, write a row to the database.
-      //
-      // Pseudocode:
-      // mysql_connection.write_row(..., )
-      friendsArray.push(req.body);
-      res.json(newBestFriend);
-
-
-    });
+      var connection = mysql.createConnection({
+        host     : process.env.RDS_HOSTNAME,
+        user     : process.env.RDS_USERNAME,
+        password : process.env.RDS_PASSWORD,
+        port     : process.env.RDS_PORT,
+        database: "FriendList"
+    
+      });
+      var friendsSql = "SELECT * from AboutFriend";
+      connection.query(friendsSql, function (err, friendsArray){
+        if (err) throw err;
+        console.log("Get all columns");
+        for (i = 0; i < friendsArray.length; i++) { // user input is defined in survey.html script section
+          // current friend
+          var currentFriend = friendsArray[i];
+          var scoreDiff = 0;
+          var currentFriendScores = [
+            currentFriend.queOne,
+            currentFriend.queTwo,
+            currentFriend.queThree,
+            currentFriend.queFour,
+            currentFriend.queFive,
+            currentFriend.queSix,
+            currentFriend.queSeven,
+            currentFriend.queEight,
+            currentFriend.queNine,
+            currentFriend.queTen
+          ]
+          
+          var newFriendScores = [
+            newFriendData.queOne,
+            newFriendData.queTwo,
+            newFriendData.queThree,
+            newFriendData.queFour,
+            newFriendData.queFive,
+            newFriendData.queSix,
+            newFriendData.queSeven,
+            newFriendData.queEight,
+            newFriendData.queNine,
+            newFriendData.queTen
+          ]
+          for (j = 0; j < currentFriendScores.length; j++) {
+    
+            scoreDiff += Math.abs(currentFriendScores[j]-newFriendScores[j]);
+            
+            
+          }
+          console.log(scoreDiff);
+    
+          if (scoreDiff < newBestFriend.friendScore){
+            newBestFriend.friendScore = scoreDiff;
+            newBestFriend.name = currentFriend.name;
+            newBestFriend.photo = currentFriend.photo;
+          }
+        }
+        console.log(newBestFriend);
+        // TODO instead of "push", do a mysql INSERT,
+        // you can't just insert the body
+        var insertSql = "INSERT INTO AboutFriend(name,image,queOne,queTwo,queThree,queFour,queFive,queSix,queSeven,queEight,queNine,queTen) VALUES('"+req.body.name+"', '"+req.body.photo+"','"+req.body.scores[0]+"','"+req.body.scores[1]+"','"+req.body.scores[2]+"','"+req.body.scores[3]+"','"+req.body.scores[4]+"','"+req.body.scores[5]+"','"+req.body.scores[6]+"','"+req.body.scores[7]+"','"+req.body.scores[8]+"','"+req.body.scores[9]+"')";
+        // var insertSql = 'INSERT ' + newFriend() + 'INTO'
+        connection.query(insertSql, function(err,result){
+          if (err) throw err;
+          console.log("New Friend inserted");
+          console.log(result);
+          res.json(newBestFriend);
+        })
+         
+        });
+      
+      });
 }
