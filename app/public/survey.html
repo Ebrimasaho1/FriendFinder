@@ -31,14 +31,18 @@
         <h2>Survey Questions</h2>
         <br>
         <h4>About You</h4> 
-        <form>
+        <form class="needs-validation">
             <div class="form-group">
                 <label for="formGroupExampleInput">Name (Required)</label>
                 <input type="text" class="form-control" id="name" placeholder="">
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Link to Photo Image</label>
-                <input type="text" class="form-control" id="imgUrl" placeholder="">
+                <input type="text" class="form-control" id="imgUrl" placeholder="" required>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Link to Social Media</label>
+                <input type="text" class="form-control" id="socialMedia" placeholder="">
             </div>
         </form>
 
@@ -46,8 +50,7 @@
         <h5>Question 1</h5>
         <h6>You prefer Burgers over Pizza</h6>
         <select class="custom-select custom-select-lg col-sm-3 " id="queOne">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -57,9 +60,8 @@
         <br>
         <h5>Question 2</h5>
         <h6>You'll rather sleep early and wake of early</h6>
-        <select class="custom-select custom-select-lg col-sm-3" id="queTwo">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Strongly Disagree)</option>
+        <select required class="custom-select custom-select-lg col-sm-3" id="queTwo">
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -70,8 +72,7 @@
         <h5>Question 3</h5>
         <h6>You're a procrastinator</h6>
         <select class="custom-select custom-select-lg col-sm-3" id="queThree">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -82,8 +83,7 @@
         <h5>Question 4</h5>
         <h6>Make friends easily</h6>
         <select class="custom-select custom-select-lg col-sm-3" id="queFour">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -94,8 +94,7 @@
         <h5>Question 5</h5>
         <h6>Physical exercise is good for the health</h6>
         <select class="custom-select custom-select-lg col-sm-3" id="queFive">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Stronly Disagree)</option>
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -106,7 +105,6 @@
         <h5>Question 6</h5>
         <h6>The Earth is round in shape</h6>
         <select class="custom-select custom-select-lg col-sm-3" id="queSix">
-            <option selected>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -118,8 +116,7 @@
         <h5>Question 7</h5>
         <h6>I'm an outdoor person</h6>
         <select class="custom-select custom-select-lg col-sm-3" id="queSeven">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -130,8 +127,7 @@
         <h5>Question 8</h5>
         <h6>You prefer Dogs than Cats</h6>
         <select class="custom-select custom-select-lg col-sm-3" id="queEight">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -142,8 +138,7 @@
         <h5>Question 9</h5>
         <h6>I believe in love</h6>
         <select class="custom-select custom-select-lg col-sm-3" id="queNine">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -154,8 +149,7 @@
         <h5>Question 10</h5>
         <h6>I prefer winter over summer</h6>
         <select class="custom-select custom-select-lg col-sm-3" id="queTen">
-            <option selected>Select an Option</option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -178,8 +172,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="background-color: brown;">
             <p id = "matchName"></p>
+            <p id = "matchSocialMediaLink"></p>
           <img src = "" id = "matchImg">
         </div>
         
@@ -196,6 +191,7 @@
         var newFriend = {
             name: $("#name").val().trim(),
             photo: $("#imgUrl").val().trim(),
+            socialMedia: $("#socialMedia").val().trim(),
             scores: [$("#queOne").val().trim(), $("#queTwo").val().trim(), $("#queThree").val().trim(), $("#queFour").val().trim(), $("#queFive").val().trim(), $("#queSix").val().trim(), $("#queSeven").val().trim(), $("#queEight").val().trim(), $("#queNine").val().trim(), $("#queTen").val().trim()]
         };
         console.log(newFriend);
@@ -206,8 +202,14 @@
         $.post("/api/friends",newFriend).then(function(data){
             console.log(data);
 
+            var photo = data.photo
+            if (photo == null) {
+                photo = 'https://i.ytimg.com/vi/jHWKtQHXVJg/maxresdefault.jpg';
+            }
+
             $("#matchName").text(data.name);
-            $("#matchImg").attr("src", data.photo);
+            $("#matchImg").attr("src", photo);
+            $("#matchSocialMediaLink").attr(data.socialMedia);
             $("#matchImg").width("300px");
             $("#matchImg").height("300px");
             $('#friendModal').modal("toggle");
@@ -215,6 +217,7 @@
             // Clear the form when submitting 
             $("#name").val("");
             $("#imgUrl").val("");
+            $("#socialMedia").val("");
             $("#queOne").val("");  $("#queTwo").val(""); $("#queThree").val("");  $("#queFour").val("");  $("#queFive").val("");  $("#queSix").val("");
             $("#queSeven").val("");  $("#queEight").val("");  $("#queNine").val("");  $("#queTen").val("");
         })

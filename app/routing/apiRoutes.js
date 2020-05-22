@@ -7,8 +7,7 @@ var mysql = require('mysql');
 //  routing
 module.exports = function (app) {
 
-
-  //post request
+//post request
   app.post("/api/friends", function (req, res) {
 
     var connection = mysql.createConnection({
@@ -19,25 +18,20 @@ module.exports = function (app) {
       database: "FriendList"
 
     });
-    
     connection.connect(function(err) {
       if (err) {
         var error = 'Database connection failed: ' + err.stack
         console.error(error)
         return;
       }
-    
-      console.log('Connected to database.');
-      // var sql = "DELETE FROM AboutFriend WHERE id > 1";
-      // connection.query(sql, function (err, result){
-      //   if (err) throw err;
-      //   console.log("Name and image deleted");
-      // });
+    console.log('Connected to database.');
+     
     });
 
 var newBestFriend = {
   name:"",
   photo:"",
+  socialMedia:"",
   friendScore: Infinity
 }
     var newFriendData = req.body;
@@ -72,36 +66,30 @@ var newBestFriend = {
             currentFriend.queTen
           ]
           
-          var newFriendScores = [
-            newFriendData.queOne,
-            newFriendData.queTwo,
-            newFriendData.queThree,
-            newFriendData.queFour,
-            newFriendData.queFive,
-            newFriendData.queSix,
-            newFriendData.queSeven,
-            newFriendData.queEight,
-            newFriendData.queNine,
-            newFriendData.queTen
-          ]
           for (j = 0; j < currentFriendScores.length; j++) {
-    
-            scoreDiff += Math.abs(currentFriendScores[j]-newFriendScores[j]);
-            
-            
+            currentFriendScoreForThisQuestion = currentFriendScores[j]
+            newFriendScoreForThisQuestion = newFriendData.scores[j];
+            console.log("CFS " + currentFriendScoreForThisQuestion)
+            console.log("NFS " + newFriendScoreForThisQuestion)
+            scoreDiff += Math.abs(currentFriendScoreForThisQuestion-newFriendScoreForThisQuestion);
           }
           console.log(scoreDiff);
     
           if (scoreDiff < newBestFriend.friendScore){
+            console.log("New best friend is: ");
+            console.log(newBestFriend.name);
+            console.log(newBestFriend.photo);
             newBestFriend.friendScore = scoreDiff;
             newBestFriend.name = currentFriend.name;
-            newBestFriend.photo = currentFriend.photo;
+            newBestFriend.photo = currentFriend.image;
+            newBestFriend.socialMedia = currentFriend.socialMedia;
           }
         }
+        console.log("Finished looking for new best friend")
         console.log(newBestFriend);
         // TODO instead of "push", do a mysql INSERT,
         // you can't just insert the body
-        var insertSql = "INSERT INTO AboutFriend(name,image,queOne,queTwo,queThree,queFour,queFive,queSix,queSeven,queEight,queNine,queTen) VALUES('"+req.body.name+"', '"+req.body.photo+"','"+req.body.scores[0]+"','"+req.body.scores[1]+"','"+req.body.scores[2]+"','"+req.body.scores[3]+"','"+req.body.scores[4]+"','"+req.body.scores[5]+"','"+req.body.scores[6]+"','"+req.body.scores[7]+"','"+req.body.scores[8]+"','"+req.body.scores[9]+"')";
+        var insertSql = "INSERT INTO AboutFriend(name,image,socialMedia,queOne,queTwo,queThree,queFour,queFive,queSix,queSeven,queEight,queNine,queTen) VALUES('"+req.body.name+"', '"+req.body.photo+"','"+req.body.socialMedia+"','"+req.body.scores[0]+"','"+req.body.scores[1]+"','"+req.body.scores[2]+"','"+req.body.scores[3]+"','"+req.body.scores[4]+"','"+req.body.scores[5]+"','"+req.body.scores[6]+"','"+req.body.scores[7]+"','"+req.body.scores[8]+"','"+req.body.scores[9]+"')";
         // var insertSql = 'INSERT ' + newFriend() + 'INTO'
         connection.query(insertSql, function(err,result){
           if (err) throw err;
