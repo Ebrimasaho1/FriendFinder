@@ -30,8 +30,8 @@ module.exports = function (app) {
 
 var newBestFriend = {
   name:"",
-  photo:"",
   socialMedia:"",
+  photo:"",
   friendScore: Infinity
 }
     var newFriendData = req.body;

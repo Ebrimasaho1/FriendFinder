@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Link to Social Media</label>
-                <input type="text" class="form-control" id="socialMedia" placeholder="">
+                <input type="text" class="form-control" id="socialMedia" placeholder="" required>
             </div>
         </form>
 
@@ -53,8 +53,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree)</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -64,8 +64,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree)</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -75,8 +75,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree)</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -86,8 +86,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree)</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -97,8 +97,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree)</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -108,8 +108,8 @@
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree)</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -119,8 +119,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -130,8 +130,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree)</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -141,8 +141,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree)</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -152,8 +152,8 @@
             <option value="1" selected>1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5 (Strongly Agree</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
         </select>
         <br>
         <br>
@@ -208,8 +208,8 @@
             }
 
             $("#matchName").text(data.name);
+            $("#matchSocialMediaLink").text(data.socialMedia);
             $("#matchImg").attr("src", photo);
-            $("#matchSocialMediaLink").attr(data.socialMedia);
             $("#matchImg").width("300px");
             $("#matchImg").height("300px");
             $('#friendModal').modal("toggle");
