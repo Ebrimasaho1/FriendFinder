@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/style.css">
-    
+
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -30,23 +30,25 @@
         <br>
         <h2>Survey Questions</h2>
         <br>
-        <h4>About You</h4> 
+        <h4>About You</h4>
         <form class="needs-validation">
             <div class="form-group">
                 <label for="formGroupExampleInput">Name (Required)</label>
                 <input type="text" class="form-control" id="name" placeholder="">
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput3">Link to Photo Image</label>
+                <label for="formGroupExampleInput2">Link to Photo Image</label>
                 <input type="text" class="form-control" id="imgUrl" placeholder="" required>
             </div>
-            
-        </form>
-        <div class="form-group">
-            <label for="formGroupExampleInput2">Link to Social Media</label>
-            <input type="text" class="form-control" id="socialMedia" placeholder="Facebook,Twitter,instagram">
-        </div>
 
+        </form>
+        <form class="needs-validation">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Link to Social Media</label>
+                <input type="text" class="form-control" id="socialMedia" placeholder="Facebook,Twitter,instagram"
+                    style="height: auto;">
+            </div>
+        </form>
         <!--User selection-->
         <h5>Question 1</h5>
         <h6>You prefer Burgers over Pizza</h6>
@@ -162,26 +164,27 @@
     </div>
 
     <!-- Button trigger modal -->
-  
-  <!-- Modal -->
-  <div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Here is your Match!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Here is your Match!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: brown;">
+                    <p id="matchName"></p>
+                    <p id="matchSocialMediaLink"></p>
+                    <img src="" id="matchImg">
+                </div>
+
+            </div>
         </div>
-        <div class="modal-body" style="background-color: brown;">
-            <p id = "matchName"></p>
-            <p id = "matchSocialMediaLink"></p>
-          <img src = "" id = "matchImg">
-        </div>
-        
-      </div>
     </div>
-  </div>
 
 
 </body>
@@ -200,7 +203,7 @@
         var userInput = newFriend.scores;
         console.log(userInput);
 
-        $.post("/api/friends",newFriend).then(function(data){
+        $.post("/api/friends", newFriend).then(function (data) {
             console.log(data);
 
             var photo = data.photo
@@ -219,12 +222,12 @@
             $("#name").val("");
             $("#imgUrl").val("");
             $("#socialMedia").val("");
-            $("#queOne").val("");  $("#queTwo").val(""); $("#queThree").val("");  $("#queFour").val("");  $("#queFive").val("");  $("#queSix").val("");
-            $("#queSeven").val("");  $("#queEight").val("");  $("#queNine").val("");  $("#queTen").val("");
+            $("#queOne").val(""); $("#queTwo").val(""); $("#queThree").val(""); $("#queFour").val(""); $("#queFive").val(""); $("#queSix").val("");
+            $("#queSeven").val(""); $("#queEight").val(""); $("#queNine").val(""); $("#queTen").val("");
         })
 
 
-     })
+    })
 
 
 </script>
