@@ -19,7 +19,7 @@
   "homepage": "https://github.com/Ebrimasaho1/FriendFinder#readme",
   "dependencies": {
     "aws-sdk": "^2.674.0",
-    "express": "^4.17.0",
+    "express": "^4.17.3",
     "mysql": "^2.18.1"
   }
 }
